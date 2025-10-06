@@ -1,0 +1,45 @@
+name: Compile LaTeX with uplatex
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    container:
+      image: paperist/alpine-texlive-ja:latest  # 日本語対応LaTeXイメージ
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX documents
+        run: |
+          find . -name "*.tex" | while IFS= read -r file; do
+            echo "Compiling $file"
+            dir=$(dirname "$file")
+            base=$(basename "$file" .tex)
+            (
+              cd "$dir"
+              # uplatex を2回実行して参照を解決
+              uplatex -interaction=nonstopmode "$base.tex"
+              uplatex -interaction=nonstopmode "$base.tex"
+              
+              # .dvi が生成されていれば PDF に変換
+              if [ -f "$base.dvi" ]; then
+                dvipdfmx "$base.dvi"
+              else
+                echo "Warning: $base.dvi not found, skipping PDF generation."
+              fi
+            )
+          done
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdfs
+          path: '**/*.pdf'
