@@ -33,7 +33,12 @@ jobs:
               {
                 "type": "section",
                 "fields": [
-                  { "type": "mrkdwn", "text": "*タイトル:* ${PR_TITLE}" },
+                  { "type": "mrkdwn", "text": "*タイトル:* ${PR_TITLE}" }
+                ]
+              }
+              {
+                "type": "section",
+                "fields": [
                   { "type": "mrkdwn", "text": "*リンク:* <${PR_URL}|PRを開く>" }
                 ]
               }
