@@ -35,7 +35,7 @@ jobs:
                 "fields": [
                   { "type": "mrkdwn", "text": "*タイトル:* ${PR_TITLE}" }
                 ]
-              }
+              },
               {
                 "type": "section",
                 "fields": [
