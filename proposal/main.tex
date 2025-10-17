@@ -6,6 +6,8 @@
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{url}
+\usepackage{enumitem}
+\usepackage{float}
 
 \begin{document}
     \begin{titlepage}
@@ -13,13 +15,15 @@
         {\large システム提案書　　第1.0版\par}
         \vspace{2cm}
 
-        {\LARGE \textbf{アプリの名前}\par}
+        {\LARGE \textbf{こじゃんとやまっぷ}\par}
         \vspace{2cm}
 
-        {\large YHY\par Group 12\par}
+        {\large 株式会社 YHY\par Group 12\par}
         \vspace{2cm}
         {\large \today \par}
     \end{titlepage}
+    \tableofcontents
+    \clearpage
 
     % 現状の課題
     \input{sections/section1.tex}
@@ -28,7 +32,7 @@
     \input{sections/section2.tex}
 
     % 機能概要・前提条件・制約事項
-    % \input{sections/section3.tex}
+    \input{sections/section3.tex}
 
     % 情報・金銭の流れ
     % \input{sections/section4.tex}
@@ -37,10 +41,10 @@
     \input{sections/section5.tex}
 
     % ハードウェア想定・ソフトウェア想定
-    % \input{sections/section6.tex}
+    \input{sections/section6.tex}
 
     % 運用・保守
-    % \input{sections/section7.tex}
+    \input{sections/section7.tex}
 
     % 費用対効果
     % \input{sections/section8.tex}
