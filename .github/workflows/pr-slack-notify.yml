@@ -4,7 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, reopened, synchronize]
+    types:
+      - opened
 
 jobs:
   notify:
@@ -22,6 +23,8 @@ jobs:
           payload=$(cat <<EOF
           {
             "text": ":bell: *Pull Request 通知*",
+            "username": "PR Bot",
+            "icon_emoji": ":github:",
             "blocks": [
               {
                 "type": "section",
@@ -32,15 +35,17 @@ jobs:
               },
               {
                 "type": "section",
-                "fields": [
-                  { "type": "mrkdwn", "text": "*タイトル:* ${PR_TITLE}" }
-                ]
+                "text":{
+                  "type": "mrkdwn",
+                  "text": "*タイトル:* ${PR_TITLE}"
+                }
               },
               {
                 "type": "section",
-                "fields": [
-                  { "type": "mrkdwn", "text": "*リンク:* <${PR_URL}|PRを開く>" }
-                ]
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*リンク:* <${PR_URL}|PRを開く>"
+                }
               }
             ]
           }
